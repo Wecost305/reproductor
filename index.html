@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enrique Bunbury - Hellville de Luxe</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+    <div class="player-container">
+        <!-- Columna Izquierda: Portada e Info -->
+        <div class="album-info">
+            <img src="img/cover.jpg" alt="Portada de Hellville de Luxe" class="album-cover">
+            <h1 class="album-title">Hellville de Luxe</h1>
+            <h2 class="artist-name">Enrique Bunbury</h2>
+            <p class="current-song-title">Selecciona una canción</p>
+            <audio id="audio-player"></audio>
+        </div>
+
+        <!-- Columna Derecha: Playlist y Controles -->
+        <div class="playlist-controls">
+            <div class="controls">
+                <button id="prev-btn" class="control-btn"><i class="fas fa-backward-step"></i></button>
+                <button id="play-btn" class="control-btn play"><i class="fas fa-play"></i></button>
+                <button id="next-btn" class="control-btn"><i class="fas fa-forward-step"></i></button>
+            </div>
+            
+            <ul id="playlist" class="playlist">
+                <!-- Las canciones se insertarán aquí con JavaScript -->
+            </ul>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
