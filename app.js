@@ -1,19 +1,67 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', ( ) => {
+    // --- INICIO DE LA MODIFICACIÓN ---
+    // Ahora, el campo 'file' contiene la URL completa de cada canción desde Cloudinary.
+    // ¡IMPORTANTE! Debes reemplazar estas URLs de ejemplo con las tuyas.
     const playlistData = [
-        { title: "El Hombre Delgado Que No Flaqueará Jamás", duration: "05:10", file: "01-el-hombre-delgado.mp3" },
-        { title: "Porque Las Cosas Cambian", duration: "04:20", file: "02-porque-las-cosas-cambian.mp3" },
-        { title: "Bujías Para El Dolor", duration: "04:35", file: "03-bujias-para-el-dolor.mp3" },
-        { title: "Si No Fuera Por Ti", duration: "04:30", file: "04-si-no-fuera-por-ti.mp3" },
-        { title: "Hay Muy Poca Gente", duration: "04:45", file: "05-hay-muy-poca-gente.mp3" },
-        { title: "El Porqué de Tus Silencios", duration: "04:50", file: "06-el-porque-de-tus-silencios.mp3" },
-        { title: "Doscientos Huesos y un Collar de Calaveras", duration: "04:15", file: "07-doscientos-huesos.mp3" },
-        { title: "Irremediablemente Cotidiano", duration: "05:05", file: "08-irremediablemente-cotidiano.mp3" },
-        { title: "Esto Es Hellville", duration: "02:40", file: "09-esto-es-hellville.mp3" },
-        { title: "La Herida Secreta", duration: "04:00", file: "10-la-herida-secreta.mp3" },
-        {title: "Aqui", duration: "05:22", file: "11-Aqui.mp3" }
+        { 
+            title: "El Hombre Delgado Que No Flaqueará Jamás", 
+            duration: "05:10", 
+            file: "https://res.cloudinary.com/deqkg7aia/video/upload/v1754787425/01-el-hombre-delgado_ui6on2.mp3" 
+        },
+        { 
+            title: "Porque Las Cosas Cambian", 
+            duration: "04:20", 
+            file: "https://res.cloudinary.com/deqkg7aia/video/upload/v1754787424/02-porque-las-cosas-cambian_jnmz8o.mp3" 
+        },
+        { 
+            title: "Bujías Para El Dolor", 
+            duration: "04:35", 
+            file: "https://res.cloudinary.com/deqkg7aia/video/upload/v1754787431/03-bujias-para-el-dolor_po5ji7.mp3" 
+        },
+        { 
+            title: "Si No Fuera Por Ti", 
+            duration: "04:30", 
+            file: "https://res.cloudinary.com/deqkg7aia/video/upload/v1754787418/04-si-no-fuera-por-ti_jfdsgq.mp3" 
+        },
+        { 
+            title: "Hay Muy Poca Gente", 
+            duration: "04:45", 
+            file: "https://res.cloudinary.com/deqkg7aia/video/upload/v1754787430/05-hay-muy-poca-gente_fwneqn.mp3" 
+        },
+        { 
+            title: "El Porqué de Tus Silencios", 
+            duration: "04:50", 
+            file: "https://res.cloudinary.com/deqkg7aia/video/upload/v1754787429/06-el-porque-de-tus-silencios_qva7t1.mp3" 
+        },
+        { 
+            title: "Doscientos Huesos y un Collar de Calaveras", 
+            duration: "04:15", 
+            file: "https://res.cloudinary.com/deqkg7aia/video/upload/v1754787461/07-doscientos-huesos_vdgqef.mp3" 
+        },
+        { 
+            title: "Irremediablemente Cotidiano", 
+            duration: "05:05", 
+            file: "https://res.cloudinary.com/deqkg7aia/video/upload/v1754787468/08-irremediablemente-cotidiano_xouqwb.mp3" 
+        },
+        { 
+            title: "Esto Es Hellville", 
+            duration: "02:40", 
+            file: "https://res.cloudinary.com/deqkg7aia/video/upload/v1754787460/09-esto-es-hellville_hvineq.mp3" 
+        },
+        { 
+            title: "La Herida Secreta", 
+            duration: "04:00", 
+            file: "https://res.cloudinary.com/deqkg7aia/video/upload/v1754787466/10-la-herida-secreta_d4axkb.mp3" 
+        },
+        { 
+            title: "Aqui", 
+            duration: "05:22", 
+            file: "https://res.cloudinary.com/deqkg7aia/video/upload/v1754787471/11-Aqui_zvnvkz.mp3" 
+        }
     ];
+    // --- FIN DE LA MODIFICACIÓN ---
 
-    const audioPlayer = document.getElementById('audio-player');
+    const audioPlayer = document.getElementById('audio-player' );
     const playlistElement = document.getElementById('playlist');
     const playBtn = document.getElementById('play-btn');
     const prevBtn = document.getElementById('prev-btn');
@@ -23,8 +71,8 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentSongIndex = 0;
     let isPlaying = false;
 
-    // Cargar la lista de canciones en el HTML
     function loadPlaylist() {
+        playlistElement.innerHTML = ''; // Limpiar la lista por si acaso
         playlistData.forEach((song, index) => {
             const li = document.createElement('li');
             li.dataset.index = index;
@@ -39,61 +87,59 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Cargar una canción específica
     function loadSong(index) {
         const song = playlistData[index];
         currentSongIndex = index;
-        audioPlayer.src = `audio/${song.file}`;
+        // --- MODIFICACIÓN CLAVE ---
+        // Ahora, en lugar de construir una ruta, asignamos directamente la URL completa.
+        audioPlayer.src = song.file; 
         currentSongTitleElement.textContent = song.title;
         updateActiveSong();
     }
     
-    // Reproducir la canción actual
     function playCurrentSong() {
         isPlaying = true;
         audioPlayer.play();
         playBtn.innerHTML = '<i class="fas fa-pause"></i>';
     }
 
-    // Pausar la canción actual
     function pauseCurrentSong() {
         isPlaying = false;
         audioPlayer.pause();
         playBtn.innerHTML = '<i class="fas fa-play"></i>';
     }
 
-    // Reproducir o pausar
     function togglePlayPause() {
-        if (isPlaying) {
+        if (!audioPlayer.src) { // Si no hay ninguna canción cargada, carga la primera
+            playSong(0);
+        } else if (isPlaying) {
             pauseCurrentSong();
         } else {
             playCurrentSong();
         }
     }
 
-    // Función principal para reproducir una canción del listado
     function playSong(index) {
         loadSong(index);
         playCurrentSong();
     }
 
-    // Canción anterior
     function playPrevSong() {
         currentSongIndex = (currentSongIndex - 1 + playlistData.length) % playlistData.length;
         playSong(currentSongIndex);
     }
 
-    // Siguiente canción
     function playNextSong() {
         currentSongIndex = (currentSongIndex + 1) % playlistData.length;
         playSong(currentSongIndex);
     }
     
-    // Actualizar visualmente la canción activa en la lista
     function updateActiveSong() {
         const listItems = document.querySelectorAll('#playlist li');
         listItems.forEach(item => item.classList.remove('active'));
-        listItems[currentSongIndex].classList.add('active');
+        if (listItems[currentSongIndex]) {
+            listItems[currentSongIndex].classList.add('active');
+        }
     }
 
     // Event Listeners
